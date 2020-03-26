@@ -1,4 +1,6 @@
-package GameElements;
+package GameController;
+
+import GameElements.GameBoard;
 
 public class GameState {
     private static GameState gameState;

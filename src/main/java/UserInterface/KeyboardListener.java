@@ -1,5 +1,5 @@
 package UserInterface;
-import GameElements.GameState;
+import GameController.GameState;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -1,8 +1,7 @@
 package UserInterface;
 
 import GameElements.Constants;
-import GameElements.GameState;
-import GameElements.Vector2D;
+import GameController.GameState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,15 +37,12 @@ public class Canvas extends JComponent {
     }
 
     private void update() {
-        System.out.println(gameState.getGameBoard().getCurrentTetromino().getPosition().getX() + " , " + gameState.getGameBoard().getCurrentTetromino().getPosition().getY());
         if (gameState.getGameBoard().canGoDown()) {
             gameState.getGameBoard().getCurrentTetromino().moveDown();
         } else {
             gameState.getGameBoard().updateCurrentTetromino();
             gameState.getGameBoard().removeRowsIfPossible();
-            System.out.println("some fuck");
             if (!gameState.getGameBoard().canExist(gameState.getGameBoard().getCurrentTetromino())){
-                System.out.println("some fuck");
                 gameState.setGameOver(true);
             }
         }

@@ -61,11 +61,9 @@ public class GameBoard {
     public boolean canExist(Tetromino tetromino) {
         for (Vector2D blockPosition : tetromino.getBlocksPosition()) {
             if (blockPosition.getX() < 0 || blockPosition.getX() > width - 1 || blockPosition.getY() < 0) {
-                System.out.println("strange fuck");
                 return false;
             }
             if (!getCell(blockPosition).isEmpty()) {
-                System.out.println("really fuck");
                 return false;
             }
         }
@@ -78,11 +76,9 @@ public class GameBoard {
             tempVector1.rotate();
             Vector2D tempVector2 = Vector2D.add(currentTetromino.getPosition(), tempVector1);
             if (tempVector2.getX() < 0 || tempVector2.getX() > width - 1 || tempVector2.getY() < 0) {
-                System.out.println("fuck1");
                 return false;
             }
             if (!board[tempVector2.getX()][tempVector2.getY()].isEmpty()) {
-                System.out.println("fuck2");
                 return false;
             }
         }

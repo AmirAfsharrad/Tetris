@@ -2,10 +2,10 @@ package UserInterface;
 
 import GameElements.Constants;
 import GameElements.GameCell;
-import GameElements.GameState;
+import GameController.GameState;
 import GameElements.Tetrominoes.Tetromino;
 import GameElements.Vector2D;
-import com.sun.org.apache.bcel.internal.Const;
+import GameController.GameRunner;
 
 import java.awt.*;
 
@@ -14,6 +14,16 @@ public class Drawer {
 
     public Drawer(Graphics2D graphics2D) {
         setGraphics2D(graphics2D);
+    }
+
+    private int getCellSize() {
+        int width = GameRunner.getGameRunner().getFrameWidth();
+        int height = GameRunner.getGameRunner().getFrameHeight();
+        return height/30;
+    }
+
+    private int getBoardWidth() {
+        return Constants.boardWidth * getCellSize();
     }
 
     private void fillRect(Vector2D vector2D, int size, Color color) {
@@ -33,7 +43,9 @@ public class Drawer {
     }
 
     private Vector2D getDrawPosition(int i, int j) {
-        return new Vector2D(100 + i * Constants.cellWidth, Constants.maxHeight - 100 - j * Constants.cellWidth);
+        System.out.println(GameRunner.getGameRunner().getFrameWidth() - getBoardWidth());
+        return new Vector2D((GameRunner.getGameRunner().getFrameWidth() - getBoardWidth()) / 2 + i * getCellSize(),
+                GameRunner.getGameRunner().getFrameHeight() - 100 - j * getCellSize());
     }
 
     private Vector2D getDrawPosition(Vector2D vector2D) {
@@ -41,12 +53,12 @@ public class Drawer {
     }
 
     private void drawGameCell(GameCell gameCell, int i, int j) {
-        CellBlockRect(getDrawPosition(i, j), Constants.cellWidth, gameCell.getColor());
+        CellBlockRect(getDrawPosition(i, j), getCellSize(), gameCell.getColor());
     }
 
     private void drawTetromino(Tetromino tetromino) {
         for (Vector2D block : tetromino.getBlocksPosition()) {
-            CellBlockRect(getDrawPosition(block) ,Constants.cellWidth, tetromino.getColor());
+            CellBlockRect(getDrawPosition(block) ,getCellSize(), tetromino.getColor());
         }
     }
 
@@ -70,7 +82,8 @@ public class Drawer {
         FontMetrics fontMetrics = graphics2D.getFontMetrics(font);
         int width = fontMetrics.stringWidth(prompt);
         graphics2D.setFont(font);
-        graphics2D.drawString(prompt, (Constants.maxWidth - width) / 2, (Constants.maxHeight - 50) / 2);
+        graphics2D.drawString(prompt, (GameRunner.getGameRunner().getFrameWidth() - width) / 2,
+                (GameRunner.getGameRunner().getFrameHeight() - 50) / 2);
 
     }
 }
