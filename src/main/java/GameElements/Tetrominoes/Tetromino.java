@@ -1,0 +1,89 @@
+package GameElements.Tetrominoes;
+
+import GameElements.Vector2D;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
+public class Tetromino {
+    private Color color;
+    private ArrayList<Vector2D> blocks;
+    private ArrayList<Vector2D> blocksPosition;
+    private Vector2D position;
+
+    public Tetromino(Color color) {
+        this.color = color;
+        blocks = new ArrayList<>();
+        blocksPosition = new ArrayList<>(Collections.nCopies(4, null));
+        position = new Vector2D(0, 0);
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public ArrayList<Vector2D> getBlocks() {
+        return blocks;
+    }
+
+    protected void setBlocks(ArrayList<Vector2D> blocks) {
+        this.blocks = blocks;
+    }
+
+    public Vector2D getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector2D position) {
+        this.position.copy(position);
+    }
+
+    public ArrayList<Vector2D> getBlocksPosition() {
+        int i = 0;
+        for (Vector2D block : blocks) {
+            blocksPosition.set(i, Vector2D.add(position, block));
+            i++;
+        }
+        return blocksPosition;
+    }
+
+    public void rotate() {
+        for (Vector2D block : blocks) {
+            block.rotate();
+        }
+    }
+
+    public void moveDown() {
+        position.addY(-1);
+    }
+
+    public void moveRight() {
+        position.addX(1);
+    }
+
+    public void moveLeft() {
+        position.addX(-1);
+    }
+
+    public static Tetromino getRandomTetromino() {
+        Random random = new Random(System.nanoTime());
+        switch (random.nextInt(7)) {
+            case 0:
+                return new I();
+            case 1:
+                return new J();
+            case 2:
+                return new L();
+            case 3:
+                return new O();
+            case 4:
+                return new S();
+            case 5:
+                return new T();
+            default:
+                return new Z();
+        }
+    }
+}
