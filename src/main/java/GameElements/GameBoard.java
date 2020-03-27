@@ -44,16 +44,8 @@ public class GameBoard implements Serializable {
         return height;
     }
 
-    public void setCurrentTetromino(Tetromino currentTetromino) {
-        this.currentTetromino = currentTetromino;
-    }
-
     public Tetromino getNextTetromino() {
         return nextTetromino;
-    }
-
-    public void setNextTetromino(Tetromino nextTetromino) {
-        this.nextTetromino = nextTetromino;
     }
 
     public GameCell[][] getBoard() {
@@ -67,7 +59,6 @@ public class GameBoard implements Serializable {
     public boolean canExist(Tetromino tetromino) {
         for (Vector2D blockPosition : tetromino.getBlocksPosition()) {
             if (blockPosition.getX() < 0 || blockPosition.getX() > width - 1 || blockPosition.getY() < 0) {
-                System.out.println(tetromino.getBlocksPosition());
                 return false;
             }
             if (!getCell(blockPosition).isEmpty()) {
@@ -82,7 +73,7 @@ public class GameBoard implements Serializable {
             Vector2D tempVector1 = new Vector2D(block.getX(), block.getY());
             tempVector1.rotate();
             Vector2D tempVector2 = Vector2D.add(currentTetromino.getPosition(), tempVector1);
-            if (tempVector2.getX() < 0 || tempVector2.getX() > width - 1 || tempVector2.getY() < 0) {
+            if (tempVector2.getX() < 0 || tempVector2.getX() > width - 1 || tempVector2.getY() < 0 || tempVector2.getY() > height - 1) {
                 return false;
             }
             if (!board[tempVector2.getX()][tempVector2.getY()].isEmpty()) {
@@ -142,6 +133,7 @@ public class GameBoard implements Serializable {
         } else {
             GameState.getGameState().setGameOver(true);
             AudioPlayer.play("Audio/buzz.wav");
+            GameState.getGameState().updateTopTenScores();
         }
     }
 
@@ -159,6 +151,7 @@ public class GameBoard implements Serializable {
                 removeRow(i);
                 AudioPlayer.play("Audio/vanish.wav");
                 i--;
+                GameState.getGameState().setScore(GameState.getGameState().getScore() + 10);
             }
         }
     }
@@ -175,6 +168,13 @@ public class GameBoard implements Serializable {
                     break;
                 }
             }
+        }
+    }
+
+    public void repent() {
+        currentTetromino.setPosition(getInitialPosition(currentTetromino));
+        while (currentTetromino.getHowManyTimesRotated() != 0) {
+            currentTetromino.rotate();
         }
     }
 

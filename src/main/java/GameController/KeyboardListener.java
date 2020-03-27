@@ -1,10 +1,7 @@
 package GameController;
-import GameController.GameState;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 public class KeyboardListener implements KeyListener {
 
@@ -15,43 +12,55 @@ public class KeyboardListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        switch (keyEvent.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-                if (GameState.getGameState().getGameBoard().canGoLeft()) {
-                    GameState.getGameState().getGameBoard().getCurrentTetromino().moveLeft();
-                }
-                break;
-            case KeyEvent.VK_RIGHT:
-                if (GameState.getGameState().getGameBoard().canGoRight()) {
-                    GameState.getGameState().getGameBoard().getCurrentTetromino().moveRight();
-                }
-                break;
-            case KeyEvent.VK_UP:
-                if (GameState.getGameState().getGameBoard().canRotate()) {
-                    GameState.getGameState().getGameBoard().getCurrentTetromino().rotate();
-                }
-                break;
-            case KeyEvent.VK_DOWN:
-                while (GameState.getGameState().getGameBoard().canGoDown()) {
-                    GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
-                }
-                break;
-            case KeyEvent.VK_L:
-                GameState.getGameState().load();
-                break;
-            case KeyEvent.VK_S:
-                try {
-                    FileOutputStream fileOut = new FileOutputStream("saved data/gameState");
-                    ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-                    objectOut.writeObject(GameState.getGameState());
-                    objectOut.close();
-                    System.out.println("Game Object Saved");
-                    System.exit(0);
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                break;
+        if (GameState.getGameState().isGamePaused()) {
+            if (keyEvent.getKeyCode() == keyEvent.VK_P) {
+                GameState.getGameState().setGamePaused(false);
+            }
+        } else {
+            switch (keyEvent.getKeyCode()) {
+                case KeyEvent.VK_LEFT:
+                    if (GameState.getGameState().getGameBoard().canGoLeft()) {
+                        GameState.getGameState().getGameBoard().getCurrentTetromino().moveLeft();
+                    }
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    if (GameState.getGameState().getGameBoard().canGoRight()) {
+                        GameState.getGameState().getGameBoard().getCurrentTetromino().moveRight();
+                    }
+                    break;
+                case KeyEvent.VK_UP:
+                    if (GameState.getGameState().getGameBoard().canRotate()) {
+                        GameState.getGameState().getGameBoard().getCurrentTetromino().rotate();
+                    }
+                    break;
+                case KeyEvent.VK_DOWN:
+                    for (int i = 0; i < 2; i++) {
+                        if (GameState.getGameState().getGameBoard().canGoDown()) {
+                            GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
+                        }
+                    }
+                    break;
+                case KeyEvent.VK_SPACE:
+                    while (GameState.getGameState().getGameBoard().canGoDown()) {
+                        GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
+                    }
+                    break;
+                case KeyEvent.VK_L:
+                    GameState.getGameState().loadGame("user saved.ser");
+                    break;
+                case KeyEvent.VK_S:
+                    GameState.getGameState().saveGame("user saved.ser");
+                    break;
+                case KeyEvent.VK_R:
+                    GameState.getGameState().getGameBoard().repent();
+                    break;
+                case KeyEvent.VK_P:
+                    GameState.getGameState().setGamePaused(!GameState.getGameState().isGamePaused());
+                    break;
+                case KeyEvent.VK_N:
+                    GameState.getGameState().reset();
+                    break;
+            }
         }
     }
 

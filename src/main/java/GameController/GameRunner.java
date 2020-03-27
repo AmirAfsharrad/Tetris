@@ -27,15 +27,26 @@ public class GameRunner {
     }
 
     public void runGame() {
-        GameState gameState = GameState.getGameState();
-        Canvas canvas = new Canvas();
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.getContentPane().add(canvas);
-        frame.setSize(Constants.maxWidth, Constants.maxHeight);
-        frame.setTitle("Tetris");
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(true);
-        frame.setVisible(true);
+        try {
+            GameState.getGameState().loadGame("auto saved.ser");
+            GameState.getGameState().reset();
+            Canvas canvas = new Canvas();
+            frame = new JFrame();
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            frame.getContentPane().add(canvas);
+            frame.setSize(Constants.maxWidth, Constants.maxHeight);
+            frame.setTitle("Tetris");
+            frame.setLocationRelativeTo(null);
+            frame.setResizable(true);
+            frame.setVisible(true);
+
+            Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+                public void run() {
+                    GameState.getGameState().saveGame("auto saved.ser");
+                }
+            }, "Shutdown-thread"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

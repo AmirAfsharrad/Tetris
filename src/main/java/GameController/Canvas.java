@@ -39,12 +39,14 @@ public class Canvas extends JComponent {
     }
 
     private void update() {
-        if (GameState.getGameState().getGameBoard().canGoDown()) {
-            GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
-        } else {
-            GameState.getGameState().setPoints(GameState.getGameState().getPoints() + 1);
-            GameState.getGameState().getGameBoard().updateCurrentTetromino();
-            GameState.getGameState().getGameBoard().removeRowsIfPossible();
+        if (!GameState.getGameState().isGamePaused()) {
+            if (GameState.getGameState().getGameBoard().canGoDown()) {
+                GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
+            } else {
+                GameState.getGameState().setScore(GameState.getGameState().getScore() + 1);
+                GameState.getGameState().getGameBoard().updateCurrentTetromino();
+                GameState.getGameState().getGameBoard().removeRowsIfPossible();
+            }
         }
     }
 

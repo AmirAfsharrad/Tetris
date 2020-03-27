@@ -14,6 +14,7 @@ public class Tetromino implements Serializable {
     private ArrayList<Vector2D> blocksPosition;
     private Vector2D position;
     private int height;
+    private int howManyTimesRotated = 0;
 
     public Tetromino(Color color, int height) {
         this.color = color;
@@ -56,10 +57,15 @@ public class Tetromino implements Serializable {
         return blocksPosition;
     }
 
+    public int getHowManyTimesRotated() {
+        return howManyTimesRotated % 4;
+    }
+
     public void rotate() {
         for (Vector2D block : blocks) {
             block.rotate();
         }
+        howManyTimesRotated++;
     }
 
     public void moveDown() {
