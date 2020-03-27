@@ -42,27 +42,27 @@ public class Drawer {
         graphics2D.fillOval(vector2D.getX(), vector2D.getY(), size, size);
     }
 
-    private Vector2D getDrawPosition(int i, int j) {
-        System.out.println(GameRunner.getGameRunner().getFrameWidth() - getBoardWidth());
-        return new Vector2D((GameRunner.getGameRunner().getFrameWidth() - getBoardWidth()) / 2 + i * getCellSize(),
+    private Vector2D getCellDrawPosition(int i, int j) {
+        return new Vector2D( GameRunner.getGameRunner().getFrameWidth() / 3 +
+                (2 * GameRunner.getGameRunner().getFrameWidth() / 3 - getBoardWidth()) / 2 + i * getCellSize(),
                 GameRunner.getGameRunner().getFrameHeight() - 100 - j * getCellSize());
     }
 
-    private Vector2D getDrawPosition(Vector2D vector2D) {
-        return getDrawPosition(vector2D.getX(), vector2D.getY());
+    private Vector2D getCellDrawPosition(Vector2D vector2D) {
+        return getCellDrawPosition(vector2D.getX(), vector2D.getY());
     }
 
     private void drawGameCell(GameCell gameCell, int i, int j) {
-        CellBlockRect(getDrawPosition(i, j), getCellSize(), gameCell.getColor());
+        CellBlockRect(getCellDrawPosition(i, j), getCellSize(), gameCell.getColor());
     }
 
     private void drawTetromino(Tetromino tetromino) {
         for (Vector2D block : tetromino.getBlocksPosition()) {
-            CellBlockRect(getDrawPosition(block) ,getCellSize(), tetromino.getColor());
+            CellBlockRect(getCellDrawPosition(block) ,getCellSize(), tetromino.getColor());
         }
     }
 
-    public void drawGameState(GameState gameState) {
+    public void drawBoard(GameState gameState) {
         for (int i = 0; i < gameState.getGameBoard().getWidth(); i++) {
             for (int j = 0; j < gameState.getGameBoard().getHeight(); j++) {
                 drawGameCell(gameState.getGameBoard().getBoard()[i][j], i, j);
@@ -71,8 +71,24 @@ public class Drawer {
         drawTetromino(gameState.getGameBoard().getCurrentTetromino());
     }
 
+    public void drawGameState(GameState gameState) {
+        drawBoard(gameState);
+        drawGameStatistics(graphics2D);
+    }
+
     public void setGraphics2D(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
+    }
+
+    public void drawGameStatistics(Graphics2D graphics2D) {
+        String prompt = "Total removed rows: " + GameState.getGameState().getCountRemovedRows();
+        Font font = new Font("Helvetica", Font.BOLD, 20);
+        FontMetrics fontMetrics = graphics2D.getFontMetrics(font);
+        int width = fontMetrics.stringWidth(prompt);
+        graphics2D.setFont(font);
+        graphics2D.drawString(prompt, (GameRunner.getGameRunner().getFrameWidth() / 3 - width) / 2,
+                (GameRunner.getGameRunner().getFrameHeight() - 50) / 2);
+
     }
 
 

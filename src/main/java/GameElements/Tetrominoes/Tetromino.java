@@ -12,12 +12,14 @@ public class Tetromino {
     private ArrayList<Vector2D> blocks;
     private ArrayList<Vector2D> blocksPosition;
     private Vector2D position;
+    private int height;
 
-    public Tetromino(Color color) {
+    public Tetromino(Color color, int height) {
         this.color = color;
         blocks = new ArrayList<>();
         blocksPosition = new ArrayList<>(Collections.nCopies(4, null));
         position = new Vector2D(0, 0);
+        this.height = height;
     }
 
     public Color getColor() {
@@ -38,6 +40,10 @@ public class Tetromino {
 
     public void setPosition(Vector2D position) {
         this.position.copy(position);
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public ArrayList<Vector2D> getBlocksPosition() {

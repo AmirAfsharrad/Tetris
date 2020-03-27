@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class S extends Tetromino {
     public S() {
-        super(Color.GREEN);
+        super(Color.GREEN, 2);
         getBlocks().add(new Vector2D(-1, 0));
         getBlocks().add(new Vector2D(0, 0));
         getBlocks().add(new Vector2D(0, 1));

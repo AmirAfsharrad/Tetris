@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="641834b1-f35e-4308-8b18-7b6edb69cd22" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GameController/GameRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -11,18 +10,35 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/UserInterface/Canvas$Ticker.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/UserInterface/Canvas$Ticker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameController/GameState.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameController/GameState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/I.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/I.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/J.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/J.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/L.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/L.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/O.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/O.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/S.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/S.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/T.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/T.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/Tetromino.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/Tetromino.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/Z.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/GameElements/Tetrominoes/Z.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/UserInterface/Canvas$Ticker.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/UserInterface/Canvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/UserInterface/Canvas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/UserInterface/Drawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/UserInterface/Drawer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/UserInterface/KeyboardListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/UserInterface/KeyboardListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameController/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameController/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameController/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/I.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/I.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/J.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/J.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/L.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/L.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/O.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/O.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/S.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/S.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/T.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/T.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/Tetromino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/Tetromino.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/Z.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameElements/Tetrominoes/Z.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/Canvas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/Drawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/Drawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/KeyboardListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/KeyboardListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,10 +116,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="801" y="272" width="544" height="558" key="#com.intellij.ide.util.MemberChooser" timestamp="1585242558699">
+    <state x="801" y="272" width="544" height="558" key="#com.intellij.ide.util.MemberChooser" timestamp="1585296407861">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="801" y="272" width="544" height="558" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1585242558699" />
+    <state x="801" y="272" width="544" height="558" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1585296407861" />
     <state x="329" y="481" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1585208784256">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -112,29 +128,41 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="746" y="414" width="494" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1853.1053@67.27.1853.1053" timestamp="1585257120883" />
-    <state x="776" y="311" width="424" height="482" key="FileChooserDialogImpl" timestamp="1585236853996">
+    <state x="776" y="311" width="424" height="482" key="FileChooserDialogImpl" timestamp="1585292586441">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="776" y="311" width="424" height="482" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1585236853996" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1585259052226">
+    <state x="776" y="311" width="424" height="482" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1585292586441" />
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1585300160674">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1585259052226" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1585259052224">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1585300160674" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1585300160673">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1585259052224" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1585259052224">
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1585300160673" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1585300160672">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1585259052224" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1585259052225">
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1585300160672" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1585300160674">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1585259052225" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1585300160674" />
+    <state x="649" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1585289986407">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="649" y="381" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1585289986407" />
     <state x="643" y="154" width="690" height="796" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585207057664">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="643" y="154" width="690" height="796" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1585207057664" />
+    <state x="761" y="473" width="454" height="158" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585296924973">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="761" y="473" width="454" height="158" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1585296924973" />
+    <state x="738" y="172" width="500" height="760" key="refactoring.ChangeSignatureDialog" timestamp="1585297660082">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="738" y="172" width="500" height="760" key="refactoring.ChangeSignatureDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1585297660082" />
   </component>
 </project>

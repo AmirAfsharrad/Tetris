@@ -1,9 +1,7 @@
 package GameElements;
 
+import GameController.GameState;
 import GameElements.Tetrominoes.Tetromino;
-
-import javax.smartcardio.TerminalFactory;
-import java.util.ArrayList;
 
 public class GameBoard {
     private int width = Constants.boardWidth;
@@ -14,16 +12,21 @@ public class GameBoard {
     private Vector2D newBlockInitPosition;
 
     public GameBoard() {
-        board = new GameCell[width][height + 4];
+        board = new GameCell[width][height + 2];
         for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height + 4; j++) {
+            for (int j = 0; j < height + 2; j++) {
                 board[i][j] = new GameCell();
             }
         }
-        newBlockInitPosition = new Vector2D((int) Math.ceil(width / 2.0) - 1, height - 1);
+        newBlockInitPosition = new Vector2D((int) Math.ceil(width / 2.0) - 1, height);
         currentTetromino = Tetromino.getRandomTetromino();
-        currentTetromino.setPosition(newBlockInitPosition);
+        currentTetromino.setPosition(getInitialPosition(currentTetromino));
         nextTetromino = Tetromino.getRandomTetromino();
+        nextTetromino.setPosition(getInitialPosition(nextTetromino));
+    }
+
+    private Vector2D getInitialPosition(Tetromino tetromino) {
+        return Vector2D.add(newBlockInitPosition, new Vector2D(0, - tetromino.getHeight()));
     }
 
     public Tetromino getCurrentTetromino() {
@@ -61,6 +64,7 @@ public class GameBoard {
     public boolean canExist(Tetromino tetromino) {
         for (Vector2D blockPosition : tetromino.getBlocksPosition()) {
             if (blockPosition.getX() < 0 || blockPosition.getX() > width - 1 || blockPosition.getY() < 0) {
+                System.out.println(tetromino.getBlocksPosition());
                 return false;
             }
             if (!getCell(blockPosition).isEmpty()) {
@@ -127,9 +131,14 @@ public class GameBoard {
             getCell(block).setEmpty(false);
             getCell(block).setColor(currentTetromino.getColor());
         }
-        currentTetromino = nextTetromino;
-        currentTetromino.setPosition(newBlockInitPosition);
-        nextTetromino = Tetromino.getRandomTetromino();
+        if (canExist(nextTetromino)) {
+            currentTetromino = nextTetromino;
+            currentTetromino.setPosition(getInitialPosition(currentTetromino));
+            nextTetromino = Tetromino.getRandomTetromino();
+            nextTetromino.setPosition(getInitialPosition(nextTetromino));
+        } else {
+            GameState.getGameState().setGameOver(true);
+        }
     }
 
     public void removeRowsIfPossible() {
@@ -142,6 +151,7 @@ public class GameBoard {
                 }
             }
             if (flag) {
+                GameState.getGameState().setCountRemovedRows(GameState.getGameState().getCountRemovedRows() + 1);
                 removeRow(i);
                 i--;
             }

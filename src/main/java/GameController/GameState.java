@@ -5,7 +5,7 @@ import GameElements.GameBoard;
 public class GameState {
     private static GameState gameState;
     private GameBoard gameBoard;
-    private int countRemovedRows;
+    private int countRemovedRows = 0;
     private boolean gamePaused;
     private boolean gameOver;
 
@@ -41,4 +41,11 @@ public class GameState {
         return gameBoard;
     }
 
+    public int getCountRemovedRows() {
+        return countRemovedRows;
+    }
+
+    public void setCountRemovedRows(int countRemovedRows) {
+        this.countRemovedRows = countRemovedRows;
+    }
 }

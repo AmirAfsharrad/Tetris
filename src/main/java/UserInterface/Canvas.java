@@ -5,6 +5,7 @@ import GameController.GameState;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.desktop.SystemSleepEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,9 +16,13 @@ public class Canvas extends JComponent {
     public Canvas() {
         gameState = GameState.getGameState();
         addKeyListener(new KeyboardListener());
+        setIgnoreRepaint(true);
         Timer timer = new Timer();
-        TimerTask timerTask = new Ticker();
-        timer.scheduleAtFixedRate(timerTask, 1000, Constants.tickTime);
+        Timer timer2 = new Timer();
+        TimerTask RenderTimerTask = new RenderTimer();
+        TimerTask UpdateTimerTask = new UpdateTimer();
+        timer.scheduleAtFixedRate(RenderTimerTask, 0, Constants.RenderTickTime);
+        timer2.scheduleAtFixedRate(UpdateTimerTask, 0, Constants.UpdateTickTime);
     }
 
 
@@ -30,6 +35,7 @@ public class Canvas extends JComponent {
         requestFocus();
         drawer.setGraphics2D(g2d);
         if (gameState.isGameOver()) {
+            drawer.drawGameState(gameState);
             drawer.drawGameOver(g2d);
         } else {
             drawer.drawGameState(gameState);
@@ -42,14 +48,18 @@ public class Canvas extends JComponent {
         } else {
             gameState.getGameBoard().updateCurrentTetromino();
             gameState.getGameBoard().removeRowsIfPossible();
-            if (!gameState.getGameBoard().canExist(gameState.getGameBoard().getCurrentTetromino())){
-                gameState.setGameOver(true);
-            }
         }
     }
 
 
-    private class Ticker extends TimerTask {
+    private class RenderTimer extends TimerTask {
+        @Override
+        public void run() {
+            repaint();
+        }
+    }
+
+    private class UpdateTimer extends TimerTask {
         @Override
         public void run() {
             if (!gameState.isGameOver()) update();
