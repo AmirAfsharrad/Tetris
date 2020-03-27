@@ -1,8 +1,9 @@
 package GameElements;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public class Vector2D {
+public class Vector2D implements Serializable {
     private int x;
     private int y;
 

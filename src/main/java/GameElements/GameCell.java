@@ -1,8 +1,9 @@
 package GameElements;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class GameCell {
+public class GameCell implements Serializable {
     private Color color;
     private boolean empty;
 

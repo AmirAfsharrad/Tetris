@@ -1,20 +1,16 @@
-package UserInterface;
+package GameController;
 
 import GameElements.Constants;
-import GameController.GameState;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.desktop.SystemSleepEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Canvas extends JComponent {
     private Drawer drawer;
-    private GameState gameState;
 
     public Canvas() {
-        gameState = GameState.getGameState();
         addKeyListener(new KeyboardListener());
         setIgnoreRepaint(true);
         Timer timer = new Timer();
@@ -34,20 +30,21 @@ public class Canvas extends JComponent {
         if (drawer == null) drawer = new Drawer(g2d);
         requestFocus();
         drawer.setGraphics2D(g2d);
-        if (gameState.isGameOver()) {
-            drawer.drawGameState(gameState);
+        if (GameState.getGameState().isGameOver()) {
+            drawer.drawGameState(GameState.getGameState());
             drawer.drawGameOver(g2d);
         } else {
-            drawer.drawGameState(gameState);
+            drawer.drawGameState(GameState.getGameState());
         }
     }
 
     private void update() {
-        if (gameState.getGameBoard().canGoDown()) {
-            gameState.getGameBoard().getCurrentTetromino().moveDown();
+        if (GameState.getGameState().getGameBoard().canGoDown()) {
+            GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
         } else {
-            gameState.getGameBoard().updateCurrentTetromino();
-            gameState.getGameBoard().removeRowsIfPossible();
+            GameState.getGameState().setPoints(GameState.getGameState().getPoints() + 1);
+            GameState.getGameState().getGameBoard().updateCurrentTetromino();
+            GameState.getGameState().getGameBoard().removeRowsIfPossible();
         }
     }
 
@@ -62,7 +59,7 @@ public class Canvas extends JComponent {
     private class UpdateTimer extends TimerTask {
         @Override
         public void run() {
-            if (!gameState.isGameOver()) update();
+            if (!GameState.getGameState().isGameOver()) update();
             repaint();
         }
     }

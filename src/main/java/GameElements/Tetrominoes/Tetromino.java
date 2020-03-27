@@ -3,11 +3,12 @@ package GameElements.Tetrominoes;
 import GameElements.Vector2D;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Tetromino {
+public class Tetromino implements Serializable {
     private Color color;
     private ArrayList<Vector2D> blocks;
     private ArrayList<Vector2D> blocksPosition;

@@ -1,4 +1,4 @@
-package UserInterface;
+package GameController;
 
 import GameElements.Constants;
 import GameElements.GameCell;
@@ -87,7 +87,16 @@ public class Drawer {
         int width = fontMetrics.stringWidth(prompt);
         graphics2D.setFont(font);
         graphics2D.drawString(prompt, (GameRunner.getGameRunner().getFrameWidth() / 3 - width) / 2,
-                (GameRunner.getGameRunner().getFrameHeight() - 50) / 2);
+                (GameRunner.getGameRunner().getFrameHeight() - 2 * 20) / 3);
+
+        prompt = "Points: " + GameState.getGameState().getPoints();
+        font = new Font("Helvetica", Font.BOLD, 20);
+        fontMetrics = graphics2D.getFontMetrics(font);
+        width = fontMetrics.stringWidth(prompt);
+        graphics2D.setFont(font);
+        graphics2D.drawString(prompt, (GameRunner.getGameRunner().getFrameWidth() / 3 - width) / 2,
+                (2 * GameRunner.getGameRunner().getFrameHeight() - 2 * 20) / 3);
+
 
     }
 

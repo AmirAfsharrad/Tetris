@@ -2,8 +2,11 @@ package GameElements;
 
 import GameController.GameState;
 import GameElements.Tetrominoes.Tetromino;
+import GameController.AudioPlayer;
 
-public class GameBoard {
+import java.io.Serializable;
+
+public class GameBoard implements Serializable {
     private int width = Constants.boardWidth;
     private int height = Constants.boardHeight;
     private GameCell[][] board;
@@ -138,6 +141,7 @@ public class GameBoard {
             nextTetromino.setPosition(getInitialPosition(nextTetromino));
         } else {
             GameState.getGameState().setGameOver(true);
+            AudioPlayer.play("Audio/buzz.wav");
         }
     }
 
@@ -153,6 +157,7 @@ public class GameBoard {
             if (flag) {
                 GameState.getGameState().setCountRemovedRows(GameState.getGameState().getCountRemovedRows() + 1);
                 removeRow(i);
+                AudioPlayer.play("Audio/vanish.wav");
                 i--;
             }
         }

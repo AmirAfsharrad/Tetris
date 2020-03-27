@@ -1,11 +1,8 @@
 package GameController;
 
 import GameElements.Constants;
-import UserInterface.Canvas;
 
 import javax.swing.*;
-import java.awt.*;
-import java.lang.management.GarbageCollectorMXBean;
 
 public class GameRunner {
     public static GameRunner gameRunner;
