@@ -16,12 +16,34 @@ public class Tetromino implements Serializable {
     private int height;
     private int howManyTimesRotated = 0;
 
+    public Tetromino() {}
+
     public Tetromino(Color color, int height) {
         this.color = color;
         blocks = new ArrayList<>();
         blocksPosition = new ArrayList<>(Collections.nCopies(4, null));
         position = new Vector2D(0, 0);
         this.height = height;
+    }
+
+    public static Tetromino getRandomTetromino() {
+        Random random = new Random(System.nanoTime());
+        switch (random.nextInt(7)) {
+            case 0:
+                return new I();
+            case 1:
+                return new J();
+            case 2:
+                return new L();
+            case 3:
+                return new O();
+            case 4:
+                return new S();
+            case 5:
+                return new T();
+            default:
+                return new Z();
+        }
     }
 
     public Color getColor() {
@@ -78,25 +100,5 @@ public class Tetromino implements Serializable {
 
     public void moveLeft() {
         position.addX(-1);
-    }
-
-    public static Tetromino getRandomTetromino() {
-        Random random = new Random(System.nanoTime());
-        switch (random.nextInt(7)) {
-            case 0:
-                return new I();
-            case 1:
-                return new J();
-            case 2:
-                return new L();
-            case 3:
-                return new O();
-            case 4:
-                return new S();
-            case 5:
-                return new T();
-            default:
-                return new Z();
-        }
     }
 }

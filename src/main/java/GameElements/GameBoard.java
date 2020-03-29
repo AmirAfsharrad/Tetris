@@ -1,8 +1,8 @@
 package GameElements;
 
+import GameController.AudioPlayer;
 import GameController.GameState;
 import GameElements.Tetrominoes.Tetromino;
-import GameController.AudioPlayer;
 
 import java.io.Serializable;
 
@@ -13,6 +13,7 @@ public class GameBoard implements Serializable {
     private Tetromino currentTetromino;
     private Tetromino nextTetromino;
     private Vector2D newBlockInitPosition;
+    private Tetromino currentTetrominoCloned;
 
     public GameBoard() {
         board = new GameCell[width][height + 2];
@@ -29,7 +30,7 @@ public class GameBoard implements Serializable {
     }
 
     private Vector2D getInitialPosition(Tetromino tetromino) {
-        return Vector2D.add(newBlockInitPosition, new Vector2D(0, - tetromino.getHeight()));
+        return Vector2D.add(newBlockInitPosition, new Vector2D(0, -tetromino.getHeight()));
     }
 
     public Tetromino getCurrentTetromino() {
@@ -83,8 +84,14 @@ public class GameBoard implements Serializable {
         return true;
     }
 
-    public boolean canGoDown() {
-        for (Vector2D blockPosition : currentTetromino.getBlocksPosition()) {
+    public boolean canGoDown(Tetromino... tetromino) {
+        Tetromino inputTetromino;
+        if (tetromino.length > 0) {
+            inputTetromino = tetromino[0];
+        } else {
+            inputTetromino = currentTetromino;
+        }
+        for (Vector2D blockPosition : inputTetromino.getBlocksPosition()) {
             if (blockPosition.getY() == 0) {
                 return false;
             }
@@ -119,7 +126,6 @@ public class GameBoard implements Serializable {
         return true;
     }
 
-
     public void updateCurrentTetromino() {
         for (Vector2D block : currentTetromino.getBlocksPosition()) {
             getCell(block).setEmpty(false);
@@ -132,7 +138,7 @@ public class GameBoard implements Serializable {
             nextTetromino.setPosition(getInitialPosition(nextTetromino));
         } else {
             GameState.getGameState().setGameOver(true);
-            AudioPlayer.play("Audio/buzz.wav");
+            AudioPlayer.play("Audio/GameOver.wav");
             GameState.getGameState().updateTopTenScores();
         }
     }
@@ -160,14 +166,10 @@ public class GameBoard implements Serializable {
         for (int i = 0; i < width; i++) {
             board[i][row].setEmpty(true);
             for (int j = row + 1; j < height; j++) {
-                if (!board[i][j].isEmpty()) {
                     board[i][j - 1].setColor(board[i][j].getColor());
-                    board[i][j - 1].setEmpty(false);
-                    board[i][j].setEmpty(true);
-                } else {
-                    break;
-                }
+                    board[i][j - 1].setEmpty(board[i][j].isEmpty());
             }
+            board[i][height - 1].setEmpty(true);
         }
     }
 
@@ -177,6 +179,4 @@ public class GameBoard implements Serializable {
             currentTetromino.rotate();
         }
     }
-
-
 }

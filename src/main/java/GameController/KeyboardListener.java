@@ -13,7 +13,8 @@ public class KeyboardListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         if (GameState.getGameState().isGamePaused()) {
-            if (keyEvent.getKeyCode() == keyEvent.VK_P) {
+            if (keyEvent.getKeyCode() == KeyEvent.VK_P) {
+                AudioPlayer.play("Audio/GameResume.wav");
                 GameState.getGameState().setGamePaused(false);
             }
         } else {
@@ -21,16 +22,25 @@ public class KeyboardListener implements KeyListener {
                 case KeyEvent.VK_LEFT:
                     if (GameState.getGameState().getGameBoard().canGoLeft()) {
                         GameState.getGameState().getGameBoard().getCurrentTetromino().moveLeft();
+                        AudioPlayer.play("Audio/MoveSuccess.wav");
+                    } else {
+                        AudioPlayer.play("Audio/MoveFail.wav");
                     }
                     break;
                 case KeyEvent.VK_RIGHT:
                     if (GameState.getGameState().getGameBoard().canGoRight()) {
                         GameState.getGameState().getGameBoard().getCurrentTetromino().moveRight();
+                        AudioPlayer.play("Audio/MoveSuccess.wav");
+                    } else {
+                        AudioPlayer.play("Audio/MoveFail.wav");
                     }
                     break;
                 case KeyEvent.VK_UP:
                     if (GameState.getGameState().getGameBoard().canRotate()) {
                         GameState.getGameState().getGameBoard().getCurrentTetromino().rotate();
+                        AudioPlayer.play("Audio/RotateSuccess.wav");
+                    } else {
+                        AudioPlayer.play("Audio/RotateFail.wav");
                     }
                     break;
                 case KeyEvent.VK_DOWN:
@@ -39,11 +49,13 @@ public class KeyboardListener implements KeyListener {
                             GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
                         }
                     }
+                    AudioPlayer.play("Audio/MoveSuccess.wav");
                     break;
                 case KeyEvent.VK_SPACE:
                     while (GameState.getGameState().getGameBoard().canGoDown()) {
                         GameState.getGameState().getGameBoard().getCurrentTetromino().moveDown();
                     }
+                    AudioPlayer.play("Audio/FreeFall.wav");
                     break;
                 case KeyEvent.VK_L:
                     GameState.getGameState().loadGame("user saved.ser");
@@ -55,6 +67,7 @@ public class KeyboardListener implements KeyListener {
                     GameState.getGameState().getGameBoard().repent();
                     break;
                 case KeyEvent.VK_P:
+                    AudioPlayer.play("Audio/GamePause.wav");
                     GameState.getGameState().setGamePaused(!GameState.getGameState().isGamePaused());
                     break;
                 case KeyEvent.VK_N:

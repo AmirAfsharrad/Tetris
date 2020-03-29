@@ -28,13 +28,12 @@ public class GameRunner {
 
     public void runGame() {
         try {
-            GameState.getGameState().loadGame("auto saved.ser");
-            GameState.getGameState().reset();
+            GameState.getGameState().loadTopTenScores();
             Canvas canvas = new Canvas();
             frame = new JFrame();
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame.getContentPane().add(canvas);
-            frame.setSize(Constants.maxWidth, Constants.maxHeight);
+            frame.setSize(Constants.initialWidth, Constants.initialHeight);
             frame.setTitle("Tetris");
             frame.setLocationRelativeTo(null);
             frame.setResizable(true);
@@ -42,7 +41,7 @@ public class GameRunner {
 
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                 public void run() {
-                    GameState.getGameState().saveGame("auto saved.ser");
+                    GameState.getGameState().saveTopTenScores();
                 }
             }, "Shutdown-thread"));
         } catch (Exception e) {

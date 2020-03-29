@@ -21,7 +21,6 @@ public class Canvas extends JComponent {
         timer2.scheduleAtFixedRate(UpdateTimerTask, 0, Constants.UpdateTickTime);
     }
 
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -49,7 +48,6 @@ public class Canvas extends JComponent {
             }
         }
     }
-
 
     private class RenderTimer extends TimerTask {
         @Override

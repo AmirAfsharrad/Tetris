@@ -2,10 +2,8 @@ package GameController;
 
 import GameElements.Constants;
 import GameElements.GameCell;
-import GameController.GameState;
 import GameElements.Tetrominoes.Tetromino;
 import GameElements.Vector2D;
-import GameController.GameRunner;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -79,7 +77,7 @@ public class Drawer {
         drawString(prompt, GameRunner.getGameRunner().getFrameHeight() / 2 - 3 * getCellSize(), "next tetromino");
     }
 
-    public void drawBoard(GameState gameState) {
+    private void drawBoard(GameState gameState) {
         for (int i = 0; i < gameState.getGameBoard().getWidth(); i++) {
             for (int j = 0; j < gameState.getGameBoard().getHeight(); j++) {
                 drawGameCell(gameState.getGameBoard().getBoard()[i][j], i, j);
@@ -125,7 +123,7 @@ public class Drawer {
                 break;
             }
             case "next tetromino": {
-                graphics2D.drawString(prompt, 8 * GameRunner.getGameRunner().getFrameWidth() / 10 + 0 * getCellSize() , y);
+                graphics2D.drawString(prompt, 8 * GameRunner.getGameRunner().getFrameWidth() / 10 + 0 * getCellSize(), y);
                 break;
             }
         }
@@ -153,10 +151,9 @@ public class Drawer {
         }
     }
 
-
     private void drawGameInstructions() {
         String prompt = "INSTRUCTIONS: ";
-        drawString(prompt,40 * GameRunner.getGameRunner().getFrameHeight() / 100, "r", 110);
+        drawString(prompt, 40 * GameRunner.getGameRunner().getFrameHeight() / 100, "r", 110);
 
         ArrayList<String> instructions = new ArrayList<>();
         instructions.add("Down Arrow: Fall Faster ");
@@ -172,11 +169,10 @@ public class Drawer {
 
         int i = 1;
         for (String instruction : instructions) {
-            drawString(instruction,(40 + 5 * i) * GameRunner.getGameRunner().getFrameHeight() / 100, "r");
+            drawString(instruction, (40 + 5 * i) * GameRunner.getGameRunner().getFrameHeight() / 100, "r");
             i++;
         }
     }
-
 
     public void drawGameOver(Graphics2D graphics2D) {
         String prompt = "Game Over! :(";

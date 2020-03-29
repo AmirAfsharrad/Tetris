@@ -3,7 +3,8 @@ package GameController;
 import GameElements.GameBoard;
 
 import java.io.*;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameState implements Serializable {
     private static GameState gameState;
@@ -14,14 +15,14 @@ public class GameState implements Serializable {
     private int score = 0;
     private static final long serialVersionUID = 1L;
     private String path = "saved data/";
-    private TreeSet<Integer> topTenScores;
+    private ArrayList<Integer> topTenScores;
 
     private GameState() {
         gameBoard = new GameBoard();
         countRemovedRows = 0;
         gamePaused = false;
         gameOver = false;
-        topTenScores = new TreeSet<>();
+        topTenScores = new ArrayList<>();
         topTenScores.add(0);
     }
 
@@ -31,6 +32,19 @@ public class GameState implements Serializable {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
             ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
             gameState = (GameState) objectInputStream.readObject();
+            objectInputStream.close();
+            loadTopTenScores();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadTopTenScores() {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(path + "high scores.ser");
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+            gameState.topTenScores = (ArrayList<Integer>) objectInputStream.readObject();
             objectInputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,6 +56,18 @@ public class GameState implements Serializable {
             FileOutputStream fileOut = new FileOutputStream(path + fileName);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(gameState);
+            objectOut.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void saveTopTenScores() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(path + "high scores.ser");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(gameState.topTenScores);
             objectOut.close();
 
         } catch (Exception ex) {
@@ -91,7 +117,7 @@ public class GameState implements Serializable {
         this.score = score;
     }
 
-    public TreeSet<Integer> getTopTenScores() {
+    public ArrayList<Integer> getTopTenScores() {
         return topTenScores;
     }
 
@@ -100,20 +126,16 @@ public class GameState implements Serializable {
             topTenScores.add(score);
             return;
         }
-        if (score > topTenScores.first()) {
-            topTenScores.pollFirst();
-            topTenScores.add(score);
+        Collections.sort(topTenScores);
+        if (score > topTenScores.get(0)) {
+            topTenScores.set(0, score);
+            Collections.sort(topTenScores);
         }
     }
 
     public void reset() {
-        TreeSet<Integer> tempTopTenScores = topTenScores;
+        ArrayList<Integer> tempTopTenScores = topTenScores;
         gameState = new GameState();
         gameState.topTenScores = tempTopTenScores;
-    }
-
-    public void resetTopTenScores() {
-        topTenScores = new TreeSet<>();
-        topTenScores.add(0);
     }
 }

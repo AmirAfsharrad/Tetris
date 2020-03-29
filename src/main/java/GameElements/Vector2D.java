@@ -1,6 +1,5 @@
 package GameElements;
 
-import javax.swing.*;
 import java.io.Serializable;
 
 public class Vector2D implements Serializable {
@@ -10,6 +9,14 @@ public class Vector2D implements Serializable {
     public Vector2D(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static Vector2D add(Vector2D v1, Vector2D v2) {
+        return new Vector2D(v1.getX() + v2.getX(), v1.getY() + v2.getY());
+    }
+
+    public static Vector2D rotate(Vector2D vector) {
+        return new Vector2D(-vector.getY(), vector.getX());
     }
 
     public int getX() {
@@ -41,10 +48,6 @@ public class Vector2D implements Serializable {
         y = y + vector.getY();
     }
 
-    public static Vector2D add(Vector2D v1, Vector2D v2) {
-        return new Vector2D(v1.getX() + v2.getX(), v1.getY() + v2.getY());
-    }
-
     public void rotate() {
         int temp = y;
         setY(x);
@@ -54,10 +57,6 @@ public class Vector2D implements Serializable {
     public void copy(Vector2D vector2D) {
         x = vector2D.getX();
         y = vector2D.getY();
-    }
-
-    public static Vector2D rotate(Vector2D vector) {
-        return new Vector2D(-vector.getY(), vector.getX());
     }
 
     @Override
